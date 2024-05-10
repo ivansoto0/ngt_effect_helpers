@@ -1,12 +1,12 @@
 #include"sound_pool.ngt"
 #include"reverb.ngt"
 void main() {
-show_game_window("reverb example");
-sound_pool test;
-string filepath = "C:\\Windows\\Media\\tada.wav";
-reverb testreverb(1.0, 1.0, 1.0, 1.0, 0.3);
-test.add_effect(testreverb);
-test.play_stationary(filepath, false);
-wait(3000);
-exit();
+    show_game_window("reverb example");
+    sound_pool test;
+    string filepath = "C:\\Windows\\Media\\tada.wav";
+    reverb testreverb(1.0, 1.0, 1.0, 1.0, 0.3);
+    test.add_effect(testreverb);
+    test.play_stationary(filepath, false);
+    wait(3000);
+    exit();
 }

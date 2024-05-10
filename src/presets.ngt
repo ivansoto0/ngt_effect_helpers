@@ -1,47 +1,47 @@
 dictionary effect_presets;
 enum preset_types {
-effect_reverb = 0,
-effect_delay
+    effect_reverb = 0,
+    effect_delay
 }
 class effect_preset {
-string name;
-int effect_type;
-effect_preset(const string&in name, int effect_type) {
-this.name = name;
-this.effect_type = effect_type;
-}
-effect_preset() {
-}
+    string name;
+    int effect_type;
+    effect_preset(const string&in name, int effect_type) {
+        this.name = name;
+        this.effect_type = effect_type;
+    }
+    effect_preset() {
+    }
 }
 class reverb_preset: effect_preset {
-float dry, wet, room_size, damping, mode;
-reverb_preset(string&in name, float dry, float wet, float room_size, float damping, float mode) {
-super(name, effect_reverb);
-this.dry = dry;
-this.wet = wet;
-this.room_size = room_size;
-this.damping = damping;
-this.mode = mode;
-}
-reverb_preset() {
-}
+    float dry, wet, room_size, damping, mode;
+    reverb_preset(string&in name, float dry, float wet, float room_size, float damping, float mode) {
+        super(name, effect_reverb);
+        this.dry = dry;
+        this.wet = wet;
+        this.room_size = room_size;
+        this.damping = damping;
+        this.mode = mode;
+    }
+    reverb_preset() {
+    }
 }
 class delay_node_preset: effect_preset {
-float dry, wet, decay;
-delay_node_preset(string&in name, float dry, float wet, float decay) {
-super(name, effect_delay);
-this.dry = dry;
-this.wet = wet;
-this.decay= decay;
-}
-delay_node_preset() {
-}
+    float dry, wet, decay;
+    delay_node_preset(string&in name, float dry, float wet, float decay) {
+        super(name, effect_delay);
+        this.dry = dry;
+        this.wet = wet;
+        this.decay= decay;
+    }
+    delay_node_preset() {
+    }
 }
 effect_preset@find_effect_preset(const string&in name) {
-if(effect_presets.exists(name)) {
-effect_preset temp();
-effect_presets.get(name, temp);
-return temp;
-}
-else return null;
+    if(effect_presets.exists(name)) {
+        effect_preset temp();
+        effect_presets.get(name, temp);
+        return temp;
+    }
+    else return null;
 }
