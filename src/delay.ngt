@@ -1,0 +1,56 @@
+class delay_node: effect {
+float dry, wet, decay;
+delay_node(float dry, float wet, float decay) {
+super("delay");
+this.dry = dry;
+this.wet = wet;
+this.decay = decay;
+}
+delay_node() {
+super("delay");
+this.dry = 0.1;
+this.wet = 0.1;
+this.decay = 0.1;
+}
+bool set_dry(float value) {
+if(this.in_range(value, 0.1, 1.0)) {
+this.dry = value;
+return true;
+}
+return false;
+}
+bool set_wet(float value) {
+if(this.in_range(value, 0.1, 1.0)) {
+this.wet = value;
+return true;
+}
+return false;
+}
+bool set_decay(float value) {
+if(this.in_range(value, 0.1, 1.0)) {
+this.decay = value;
+return true;
+}
+return false;
+}
+bool config_from_preset(delay_node_preset@preset) {
+if(@preset == null) return false;
+bool[] results(0);
+results.insert_last(this.set_dry(preset.dry));
+results.insert_last(this.set_wet(preset.wet));
+results.insert_last(this.set_decay(preset.decay));
+bool success = true;
+for(uint i=0;i<results.length();i+=1) {
+if(!results[i]) {
+alert("error", "Couldn't configure reverb. Index is "+i);
+success = false;
+break;
+}
+}
+return success;
+}
+bool configure_effect(sound@handle) {
+handle.set_delay_parameters(this.dry, this.wet, this.decay);
+return true;
+}
+}

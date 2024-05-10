@@ -1,0 +1,26 @@
+class effect {
+string type;
+effect(string&in type) {
+this.type = type;
+}
+effect() {
+}
+bool in_range(float value, float min, float max) {
+bool inrange = true;
+if(value>max or value<min) inrange = false;
+return inrange;
+}
+bool is_safe(sound@handle) {
+if(@handle == null) return false;
+if(!handle.active) return false;
+return true;
+}
+bool attach(sound@handle) {
+if(!this.is_safe(handle)) return false;
+handle.set_fx(this.type);
+return this.configure_effect(handle);
+}
+bool configure_effect(sound@handle) {
+return false;
+}
+}
