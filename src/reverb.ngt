@@ -1,5 +1,4 @@
 #include"effect.ngt"
-#include"spaces.ngt"
 class reverb: effect {
 float dry, wet, room_size, damping, mode;
 reverb(float dry, float wet, float room_size, float damping, float mode) {
@@ -75,27 +74,5 @@ bool configure_effect(sound@handle) {
 handle.set_reverb_parameters(this.dry, this.wet, this.room_size, this.damping, this.mode);
 return true;
 
-}
-}
-class reverb_space: effect_space {
-float dry, wet, room_size, damping, mode;
-reverb@r;
-reverb_space(double minx, double maxx, double miny, double maxy, double minz, double maxz, float dry, float wet, float room_size, float damping, float mode, reverb@e) {
-super(minx, maxx, miny, maxy, minz, maxz, e);
-this.r = r;
-this.dry = dry;
-this.wet = wet;
-this.room_size = room_size;
-this.damping = damping;
-this.mode = mode;
-this.configure();
-}
-void configure() {
-if(@this.r == null) return;
-this.r.set_dry(this.dry);
-this.r.set_wet(this.wet);
-this.r.set_room_size(this.room_size);
-this.r.set_damping(this.damping);
-this.r.set_mode(this.mode);
 }
 }

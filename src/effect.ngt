@@ -1,3 +1,4 @@
+#include"presets.ngt"
 class effect {
 string type;
 effect(string&in type) {
